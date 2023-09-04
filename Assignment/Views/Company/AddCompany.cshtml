@@ -1,0 +1,29 @@
+﻿@model Assignment.ViewModels.CompanyDTO
+
+
+<section class="form-container">
+    <h1>Add Company</h1>
+    <form method="POST" action="AddCompanyt" class="mt-5">
+        <input type="hidden" class="form-control" asp-for="Id">
+        <div class="row mb-3">
+            <div class="col-sm-4">
+                <label for="" class="form-label">Company Name</label>
+                <input type="text" class="form-control" asp-for="CompanyName">
+            </div>
+            <div class="col-sm-4">
+                <label for="" class="form-label">Company Phone</label>
+                <input type="number" class="form-control" asp-for="CompanyPhone">
+            </div>
+            <div class="col-sm-4">
+                <label for="" class="form-label">Company Email</label>
+                <input type="number" class="form-control" asp-for="CompanyEmail">
+            </div>
+            <div class="col-sm-4">
+                <label for="" class="form-label">Company Description</label>
+                <input type="text" class="form-control" asp-for="CompanyDescription">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</section>

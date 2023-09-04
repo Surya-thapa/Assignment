@@ -1,0 +1,54 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border: solid;
+            width: 100%;
+        }
+
+        th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 10px;
+            text-decoration-style: double;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>Company</h1>
+        <div class="Add Company">
+        <a asp-controller="Company" asp-action="AddCompany">Add Company</a>
+        </div>
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th hidden>Id</th>
+                    <th>SN</th>
+                    <th>Company Name</th>
+                    <th>Company Phone</th>
+                    <th>Company Email</th>
+                    <th>Company Description</th>
+                </tr>
+
+            </thead>
+        </table>
+
+    </section>
+</body>
+</html>

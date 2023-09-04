@@ -1,8 +1,8 @@
 ﻿using Assignment.Models.Domain;
 
-namespace Assignment.Models
+namespace Assignment.ViewModels
 {
-    public class AddEmployeeViewModel
+    public class EmployeeDTO
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -13,5 +13,4 @@ namespace Assignment.Models
         public Guid DepartmentId { get; set; }
         public Department Department { get; set; }
     }
-
 }
