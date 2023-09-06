@@ -1,4 +1,4 @@
-﻿namespace Assignment.ViewModels
+﻿namespace Assignment.ViewModels.Company
 {
     public class CompanyDTO
     {
