@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Assignment.Migrations
 {
     [DbContext(typeof(AssignDbContext))]
-    [Migration("20230904180619_initial")]
+    [Migration("20230906045218_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -25,10 +25,44 @@ namespace Assignment.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Assignment.Models.Domain.Company", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CompanyDescription")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("CompanyEmail")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("CompanyPhone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Company");
+                });
+
             modelBuilder.Entity("Assignment.Models.Domain.Department", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("DepartmentDescription")
@@ -44,6 +78,8 @@ namespace Assignment.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("Department");
                 });
@@ -82,6 +118,13 @@ namespace Assignment.Migrations
                     b.ToTable("Employees");
                 });
 
+            modelBuilder.Entity("Assignment.Models.Domain.Department", b =>
+                {
+                    b.HasOne("Assignment.Models.Domain.Company", null)
+                        .WithMany("Department")
+                        .HasForeignKey("CompanyId");
+                });
+
             modelBuilder.Entity("Assignment.Models.Domain.Employee", b =>
                 {
                     b.HasOne("Assignment.Models.Domain.Department", "Department")
@@ -90,6 +133,11 @@ namespace Assignment.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("Assignment.Models.Domain.Company", b =>
+                {
                     b.Navigation("Department");
                 });
 #pragma warning restore 612, 618

@@ -2,6 +2,7 @@
 @{
 }
 <!DOCTYPE html>
+
 <html>
 <head>
     <style>
@@ -18,11 +19,19 @@
             text-decoration-style: double;
         }
 
+        td {
+            border: 1px solid #FFFF;
+            text-align: center;
+            padding: 10px;
+            text-decoration-style: double;
+        }
+
         tr:nth-child(even) {
             background-color: #dddddd;
         }
     </style>
 </head>
+</html>
 <section>
         <h1>Company</h1>
         <div class="Add Company">
@@ -41,20 +50,25 @@
                 </tr>
             </thead>
         </table>
- <tbody>
+
             @{
                 int i = 0;
             }
+         <table>
             @foreach (var company in Model)
             {
+                <tr>
                 <td hidden>@company.Id</td>
                 <td>@(i += 1)</td>
-                <td>
-                    <a href="Company/AddCompany/@company.Id">Update</a>
+                <td>@company.CompanyName</td>
+                <td>@company.CompanyPhone</td>
+                <td>@company.CompanyEmail</td>
+                <td>@company.CompanyDescription</td>
+                <td><a href="Company/AddCompany/@company.Id">Update</a>
                     &nbsp;&nbsp; <a href="Company/Delete/@company.Id">Delete</a>
                 </td>
+                </tr>
             }
 
-  </tbody>
+      </table>
  </section>
-</html>

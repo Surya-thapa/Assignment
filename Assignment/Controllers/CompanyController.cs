@@ -30,19 +30,37 @@ namespace Assignment.Controllers
             return View(companydata);
         }
         [HttpGet]
-        public IActionResult AddCompany(Guid id) 
+        public IActionResult AddCompany()
         {
-            AddCompanyDTO addcomp = new AddCompanyDTO();
-            if(id != Guid.Empty)
+            AddCompanyDTO model = new AddCompanyDTO();
+          
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddCompany(AddCompanyDTO model)
+        {
+            Company com = new Company()
             {
-                addcomp.Id = id;
-                var company = _assignDbContext.Company.FirstOrDefault(x => x.Id == id);
-                addcomp.CompanyName = company.CompanyName;
-                addcomp.CompanyPhone = company.CompanyPhone;
-                addcomp.CompanyEmail = company.CompanyEmail;
-                addcomp.CompanyDescription = company.CompanyDescription;
-            }
+                CompanyName = model.CompanyName,
+                CompanyPhone = model.CompanyPhone,
+                CompanyEmail = model.CompanyEmail,
+                CompanyDescription = model.CompanyDescription
+            };
+            await _assignDbContext.Company.AddAsync(com);
+            await _assignDbContext.SaveChangesAsync();
+
+            return RedirectToAction("IndexCompany");
+        }
+        [HttpGet]
+        public IActionResult UpdateCompany()
+        {
             return View();
         }
+        [HttpPost]
+        public IActionResult UpdateCompany(UpdateCompanyDTO model)
+        {
+            return RedirectToAction("IndexCompany");
+        }
+
     }
 }

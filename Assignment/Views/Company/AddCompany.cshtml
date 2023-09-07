@@ -1,9 +1,9 @@
-﻿@model Assignment.ViewModels.Company.CompanyDTO;
+﻿@model Assignment.ViewModels.Company.AddCompanyDTO;
 
 
 <section class="form-container">
     <h1>Add Company</h1>
-    <form method="POST" action="AddCompanyt" class="mt-5">
+    <form method="POST" action="AddCompany" class="mt-5">
         <input type="hidden" class="form-control" asp-for="Id">
         <div class="row mb-3">
             <div class="col-sm-4">
@@ -16,7 +16,7 @@
             </div>
             <div class="col-sm-4">
                 <label for="" class="form-label">Company Email</label>
-                <input type="number" class="form-control" asp-for="CompanyEmail">
+                <input type="email" class="form-control" asp-for="CompanyEmail">
             </div>
             <div class="col-sm-4">
                 <label for="" class="form-label">Company Description</label>
